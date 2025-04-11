@@ -5,7 +5,7 @@ ARG FILES=
 ARG DEBIAN_VERSION=bullseye-slim
 
 ############################################# Base image for Debian #############################################
-FROM nginx:1.23.2 AS debian
+FROM nginx:1.27.1 AS debian
 
 RUN apt-get update \
 	&& apt-get install --no-install-recommends --no-install-suggests -y libcap2-bin \
@@ -13,7 +13,7 @@ RUN apt-get update \
 
 
 ############################################# Base image for Alpine #############################################
-FROM nginx:1.23.2-alpine AS alpine
+FROM nginx:1.27.1-alpine AS alpine
 
 RUN apk add --no-cache libcap
 
@@ -147,7 +147,7 @@ RUN --mount=type=secret,id=nginx-repo.crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode
 
 
 ############################################# Base images containing libs for Opentracing #############################################
-FROM opentracing/nginx-opentracing:nginx-1.23.2 as opentracing-lib
+FROM opentracing/nginx-opentracing:nginx-1.27.1 as opentracing-lib
 
 
 ############################################# Build image for Debian with Opentracing #############################################
